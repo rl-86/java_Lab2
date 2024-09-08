@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Player {
+public class Player implements Game.Movable {
 
     private String name;
     private int y;
@@ -20,7 +20,14 @@ public class Player {
 
     // Display player stats
     public void playerStats() {
-            System.out.println("Player: "+name+"\t HP: "+health+"\t Str: "+strength+"\n");
+            System.out.println("\nPlayer: "+name+"\t HP: "+health+"\t Str: "+strength+"\n pos: x"+getX()+" y"+getY());
+    }
+
+    @Override
+    public void move(int newX, int newY) {
+        this.x = newX;
+        this.y = newY;
+        System.out.println(name + " moved to position: " + newX + ", " + newY);
     }
 
     //Setters

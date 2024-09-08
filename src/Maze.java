@@ -18,11 +18,15 @@ public class Maze {
             }
         }
         // Position for the treasure
-        map[13][28] = 2;
+        //map[13][28] = 2;
         // Starting position for the player
-        map[1][1] = 3;
+        //map[1][1] = 3;
     }
 
+    public void placePlayer(Player player) {
+        map[player.getY()][player.getX()] = 3;
+
+    }
 
     public void printMaze() {
         for (int i = 0; i < map.length; i++) {
@@ -49,6 +53,26 @@ public class Maze {
             System.out.println();
         }
     }
+
+    public boolean isValidMove(int x, int y) {
+        return map[y][x] != 1;
+    }
+
+    public void updatePosition(Game.Movable entity, int newX, int newY) {
+        if (entity instanceof Player) {
+            Player player = (Player) entity;
+            map[player.getY()][player.getX()] = 0;
+
+            if (isValidMove(newX, newY)) {
+                player.move(newX, newY);
+                map[newY][newX] = 3;
+            } else {
+                System.out.println("Cannot move there!");
+            }
+        }
+
+    }
+
 
     public int getCell(int x, int y) {
         return map[y][x];
