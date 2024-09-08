@@ -17,16 +17,21 @@ public class Maze {
                 }
             }
         }
-        // Position for the treasure
-        //map[13][28] = 2;
-        // Starting position for the player
-        //map[1][1] = 3;
     }
 
     public void placePlayer(Player player) {
         map[player.getY()][player.getX()] = 3;
-
     }
+    public void placeMonster(Monster monster) {
+        map[monster.getY()][monster.getX()] = 4;
+    }
+    public void placeTreasure(Treasure treasure) {
+        map[treasure.getY()][treasure.getX()] = 2;
+    }
+    public void removeEntity(Game.Movable entity) {
+        map[entity.getY()][entity.getX()] = 0;
+    }
+
 
     public void printMaze() {
         for (int i = 0; i < map.length; i++) {
@@ -45,6 +50,12 @@ public class Maze {
                     case 3:
                         character = 'P'; // Player
                     break;
+                    case 4:
+                        character = 'M'; // Monster
+                    break;
+                    case 5:
+                        character = '*'; // Item
+                    break;
                 }
 
                 System.out.print(character + " ");
@@ -59,20 +70,23 @@ public class Maze {
     }
 
     public void updatePosition(Game.Movable entity, int newX, int newY) {
-        if (entity instanceof Player) {
-            Player player = (Player) entity;
-            map[player.getY()][player.getX()] = 0;
 
-            if (isValidMove(newX, newY)) {
-                player.move(newX, newY);
+        if (isValidMove(newX, newY)) {
+            map[entity.getY()][entity.getX()] = 0;
+            entity.move(newX, newY);
+
+            if (entity instanceof Player) {
                 map[newY][newX] = 3;
-            } else {
-                System.out.println("Cannot move there!");
+            } else if (entity instanceof Monster) {
+                map[newY][newX] = 4;
             }
+
+        } else {
+            System.out.println("There is a wall in the way!");
+
         }
 
     }
-
 
     public int getCell(int x, int y) {
         return map[y][x];

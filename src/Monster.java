@@ -1,27 +1,19 @@
-import java.util.ArrayList;
-
-public class Player implements Game.Movable {
+public class Monster implements Game.Movable {
 
     private String name;
     private int y;
     private int x;
     private int health;
     private int strength;
-    private ArrayList<Item> items;
 
-    public Player(String name, int y, int x, int health, int strength) {
+    public Monster(String name, int y, int x, int health, int strength) {
         this.name = name;
         this.y = y;
         this.x = x;
         this.health = health;
-        this.strength = strength;
-        this.items = new ArrayList<>();
+        this.strength = strength;;
     }
 
-    // Display player stats
-    public void playerStats() {
-            System.out.println("\nPlayer: "+name+"\t HP: "+health+"\t Str: "+strength+"\n");
-    }
 
     @Override
     public void move(int newX, int newY) {
@@ -45,10 +37,6 @@ public class Player implements Game.Movable {
     public void setStrength(int strength) {
         this.strength = strength;
     }
-    public void addItem(Item item) {
-        items.add(item);
-    }
-
     //Getters
     public String getName() {
         return name;
@@ -64,8 +52,5 @@ public class Player implements Game.Movable {
     }
     public int getStrength() {
         return strength;
-    }
-    public ArrayList<Item> getItems() {
-        return items;
     }
 }
