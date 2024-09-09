@@ -15,14 +15,18 @@ public class Game {
     public static void main(String[] args) {
 
         // Set map size
-        int mapY = 5;
-        int mapX = 10;
+        int mapY = 15;
+        int mapX = 30;
 
 
         Maze maze = new Maze(mapY, mapX);
         Player p1 = new Player("Hero", 1, 1, 21, 20);
-        Monster m1 = new Monster("Goblin", mapY/4, mapX/5,  45, 10);
-        Monster m2 = new Monster("Bat", mapY/2, mapX/3,  20, 20);
+        //Monster
+        Monster m1 = new Monster("Goblin", mapY/4, mapX/5, 45, 10);
+        Monster m2 = new Monster("Bat", mapY/2, mapX/3, 20, 20);
+        Monster m3 = new Monster("Dragon", mapY-5, mapX-5, 100, 30);
+        //Items
+        Upgrade u1 = new Upgrade("Hero", mapY/4, mapX/5, 45, 10);
         Treasure t1 = new Treasure("Golden Eagle Statue", mapX-2, mapY-2, 100);
         boolean activeGame = true;
 
@@ -64,8 +68,7 @@ public class Game {
                     maze.updatePosition(p1, p1.getX(),direction);
                     break;
                 case "5":
-                    System.out.println("game over...");
-                    activeGame = false;
+                    //other moves?
                 break;
 
             }

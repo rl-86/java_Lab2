@@ -17,6 +17,29 @@ public class Maze {
                 }
             }
         }
+        // Generate inner walls
+        for (int i = 2; i < map.length - 2; i += 2) {
+            for (int j = 2; j < map[i].length - 2; j += 2) {
+                map[i][j] = 1;
+
+                int direction = (int) (Math.random() * 4);
+                switch (direction) {
+                    case 0: // upp
+                        map[i - 1][j] = 1;
+                        break;
+                    case 1: // ner
+                        map[i + 1][j] = 1;
+                        break;
+                    case 2: // vänster
+                        map[i][j - 1] = 1;
+                        break;
+                    case 3: // höger
+                        map[i][j + 1] = 1;
+                        break;
+                }
+            }
+        }
+
     }
 
     public void placePlayer(Player player) {
@@ -42,7 +65,7 @@ public class Maze {
                         character = ' '; // Empty space
                     break;
                     case 1:
-                        character = '#'; // Wall
+                        character = '|'; // Wall
                     break;
                     case 2:
                         character = 'T'; // Treasure
