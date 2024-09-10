@@ -20,15 +20,16 @@ public class Game {
 
 
         Maze maze = new Maze(mapY, mapX);
-        Player p1 = new Player("Hero", 1, 1, 21, 20);
+        Player p1 = new Player("Hero", 1, 1, 70, 20);
         //Monster
-        Monster m1 = new Monster("Goblin", mapY/4, mapX/5, 45, 10);
+        Monster m1 = new Monster("Goblin", mapY/4, mapX/5, 40, 10);
         Monster m2 = new Monster("Bat", mapY/2, mapX/3, 20, 20);
-        Monster m3 = new Monster("Dragon", mapY-5, mapX-5, 100, 30);
+        Monster m3 = new Monster("Dragon", mapY-2, mapX-3, 100, 30);
         //Items
-        Upgrade u1 = new Upgrade("Hero", mapY/4, mapX/5, 45, 10);
+        Upgrade u1 = new Upgrade("Knife", mapY/4, mapX/5, 0, 10);
         Treasure t1 = new Treasure("Golden Eagle Statue", mapX-2, mapY-2, 100);
         boolean activeGame = true;
+
 
         System.out.println("\nWelcome to The Maze");
         System.out.println("========");
@@ -40,11 +41,15 @@ public class Game {
         maze.placePlayer(p1);
         maze.placeMonster(m1);
         maze.placeMonster(m2);
+        maze.placeMonster(m3);
         maze.placeTreasure(t1);
 
         while (activeGame) {
 
             p1.playerStats();
+            maze.moveRandom(m1);
+            maze.moveRandom(m2);
+            maze.moveRandom(m3);
             maze.printMaze();
 
             int direction = 0;
@@ -80,7 +85,7 @@ public class Game {
                 activeGame = false;
 
                 // Encounter Monster 1
-            } else if (p1.getY() == m1.getY() && p1.getX() == m1.getX()) {
+            } else if (p1.getY() == m1.getY() && p1.getX() == m1.getX() && Monster.isAlive(m1)== true) {
                 System.out.println("\nYou have encountered a nasty looking "+m1.getName()+" with "+m1.getHealth()+" HP");
                 System.out.println("Strike?");
                 sc.nextLine();
@@ -102,7 +107,7 @@ public class Game {
                 if (p1.getHealth() <= 0) {
                     System.out.println("Noo! The "+m1.getName()+" killed you!");
                     System.out.println(p1.getName()+" is no more...");
-                    System.out.println("Game over...");
+                    System.out.println("Game over!");
                     activeGame = false;
                 }
                 if (activeGame == true) {

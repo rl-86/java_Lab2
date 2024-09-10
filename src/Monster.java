@@ -13,6 +13,9 @@ public class Monster implements Game.Movable {
         this.health = health;
         this.strength = strength;;
     }
+    public static boolean isAlive (Monster monster) {
+        return monster.getHealth() > 0;
+    }
 
 
     @Override

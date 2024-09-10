@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Maze {
 
     private int[][] map;
@@ -63,22 +65,22 @@ public class Maze {
                 switch (map[i][j]){
                     case 0:
                         character = ' '; // Empty space
-                    break;
+                        break;
                     case 1:
                         character = '|'; // Wall
-                    break;
+                        break;
                     case 2:
                         character = 'T'; // Treasure
-                    break;
+                        break;
                     case 3:
                         character = 'P'; // Player
-                    break;
+                        break;
                     case 4:
                         character = 'M'; // Monster
-                    break;
+                        break;
                     case 5:
                         character = '*'; // Item
-                    break;
+                        break;
                 }
 
                 System.out.print(character + " ");
@@ -108,6 +110,35 @@ public class Maze {
             System.out.println("There is a wall in the way!");
 
         }
+
+    }
+
+    public void moveRandom(Game.Movable entity) {
+        Random random = new Random();
+
+        int direction = random.nextInt(4);
+
+        int currentX = entity.getX();
+        int currentY = entity.getY();
+
+        int newX = currentX;
+        int newY = currentY;
+
+        switch (direction) {
+            case 0: // Upp
+                newY = currentY - 1;
+                break;
+            case 1: // Down
+                newY = currentY + 1;
+                break;
+            case 2: // Left
+                newX = currentX - 1;
+                break;
+            case 3: // Right
+                newX = currentX + 1;
+                break;
+        }
+        updatePosition(entity, newX, newY);
 
     }
 
