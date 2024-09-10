@@ -9,6 +9,10 @@ public class Item implements Game.Movable {
         this.y = y;
     }
 
+    @Override
+    public void move(int y, int x) {
+
+    }
     // Setters
     public void setName(String name) {
         this.name = name;
@@ -27,12 +31,6 @@ public class Item implements Game.Movable {
     public int getX() {
         return x;
     }
-
-    @Override
-    public void move(int y, int x) {
-
-    }
-
     public int getY() {
         return y;
     }

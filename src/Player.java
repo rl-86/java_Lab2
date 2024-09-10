@@ -20,7 +20,8 @@ public class Player implements Game.Movable {
 
     // Display player stats
     public void playerStats() {
-            System.out.println("\nPlayer: "+name+"\t HP: "+health+"\t Str: "+strength+"\n");
+            System.out.println("\nPlayer: "+name+"\t HP: "+health+"\t Str: "+strength);
+            System.out.println("-------------------------------------");
     }
 
     @Override
