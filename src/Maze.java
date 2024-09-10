@@ -185,7 +185,7 @@ public class Maze {
             }
         }
     }
-
+    // Item handler
     public void handleItems(Player player) {
         int playerX = player.getX();
         int playerY = player.getY();
@@ -197,27 +197,22 @@ public class Maze {
                 if (item instanceof Upgrade) {
                     Upgrade upgrade = (Upgrade) item;
 
-                    // För att hålla reda på vad som uppdaterades
                     StringBuilder message = new StringBuilder("You found "+ upgrade.getName()+" and ");
 
-                    // Uppdatera spelarens hälsa om hälsobonusen inte är 0
                     if (upgrade.getHealth() != 0) {
                         player.setHealth(player.getHealth() + upgrade.getHealth());
                         message.append("Your health increased by ").append(upgrade.getHealth()).append("! ");
                     }
 
-                    // Uppdatera spelarens styrka om styrkebonusen inte är 0
                     if (upgrade.getStrength() != 0) {
                         player.setStrength(player.getStrength() + upgrade.getStrength());
                         message.append("Your strength increased by ").append(upgrade.getStrength()).append("!");
                     }
 
-                    // Skriv endast ut meddelandet om det skedde någon uppdatering
                     if (message.length() > ("You found "+ upgrade.getName()).length()) {
                         System.out.println(message.toString());
                     }
 
-                    // Ta bort item från kartan och listan
                     map[item.getY()][item.getX()] = 0;
                     items.remove(i);
                     break;
