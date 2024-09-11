@@ -40,11 +40,11 @@ public class Game {
 
         System.out.println("\nWelcome to The Maze");
         System.out.println("========");
-       /* System.out.println("Enter Your name: ");
+        System.out.println("Enter Your name: ");
         p1.setName(sc.nextLine());
         System.out.println("Great, good luck " + p1.getName() + "\n");
         System.out.println("Use \"A\" \"W\" \"D\" \"S\" + Enter to move");
-*/
+
 
         maze.placeMonster(m1);
         maze.placeMonster(m2);
